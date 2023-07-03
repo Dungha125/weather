@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+}
+body
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(180deg, rgb(59, 157, 255) 0%, rgba(226,240,255,1) 75%, rgba(251,251,251,1) 75%);
+}
+.main
+{
+    width: 90%;
+    height: 750px;
+    box-shadow: 0 3px 10px rgb(235, 235, 235);
+    margin-top: 100px;
+    border-radius: 10px;
+}
+.weather_today
+{
+    width: 100%;
+    height: 621px;
+    background-color: rgba(244, 244, 244, 0.422);
+    border-radius: 10px 10px 0 0;
+    border-top: solid 2.5px white;
+    border-left: solid 1.5px white;
+    border-right: solid 1.5px white;
+
+}
+.weather_week
+{
+    width: 100%;
+    height: 129px;
+}
+.weather_today .place
+{
+    display: inline;
+    height: 200px;
+    width: 100%;
+}
+.weather_today .place .infor_place
+{
+    width: 100%;
+}
+.weather_today .place h1
+{
+    margin:0px 20px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 40px;
+}
+.weather_today .place .search
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height:50px;
+    margin-left: 20px;
+}
+.weather_today .place .search input
+{
+    height: 26px;
+    border-radius:5px 0 0 5px;
+    border: none;
+    padding-left: 5px;
+}
+
+
+.weather_today .place .search button{
+    width: max-content;
+    height: 26px;
+    background-color: #f0ecfc;
+    line-height: 26px;
+    padding: 0;
+    background-image: linear-gradient(315deg, #f0ecfc 0%, #8ebfff 74%);
+    border: none;
+    border-radius: 0 5px 5px 0;
+  }
+  .weather_today .place .search button span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0 5px;
+    border-radius: 0 5px 5px 0;
+  }
+  .weather_today .place .search button span:hover{
+    color: #ffffff;
+    background-image: linear-gradient(315deg, #395286 0%, #00255c 74%);
+  }
+
+/*nhiet do*/
+.weather_today .place .tempurature
+{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+@media (max-width: 768px)
+{
+    .weather_today .place .tempurature
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .weather_today .place .tempurature .tem_number
+    {
+        transform: scale(0.8);
+    }
+}
+.weather_today .place .tempurature span img
+{
+    width: 200px;
+    height: 200px;
+}
+.weather_today .place .tempurature .tem_number
+{
+    font-size: 80px;
+    font-family: sans-serif;
+    font-weight: 700;
+}
