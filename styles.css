@@ -17,9 +17,9 @@ body
 {
     width: 90%;
     height: fit-content;
-    box-shadow: 0 3px 10px rgb(235, 235, 235);
     margin-top: 100px;
     border-radius: 10px;
+    margin-bottom: 100px;
 }
 .weather_today
 {
