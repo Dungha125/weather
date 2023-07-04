@@ -1,32 +1,46 @@
-const apiKey = 'AIzaSyASi2c2w2ujewB4o4LjXS64n1-KmW7Llsk';
+const search = document.querySelector('.btnsearch');
 
-// Lấy tham chiếu đến ô input và thẻ <h1>
-const searchInput = document.getElementById('searchInput');
-const resultElement = document.getElementById('result');
+search.addEventListener('click', () => {
+    const APIKey = 'd3e085e20c39e18040fc69688298a017';
+    const city = document.querySelector('.searchInput').value;
 
-// Hàm tìm kiếm địa điểm
-function searchPlace() {
-  const placeName = searchInput.value;
-  
-  // Gọi API để tìm kiếm địa điểm với placeName và apiKey
-  fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${placeName}`)
-    .then(response => response.json())
-    .then(data => {
-      if (data.status === 'OK') {
-        // Lấy thông tin địa điểm đầu tiên trong kết quả tìm kiếm
-        const place = data.results[0];
-        
-        // Lấy tên địa điểm
-        const cityName = place.formatted_address;
-        
-        // In ra tên địa điểm
-        resultElement.textContent = cityName;
-      } else {
-        resultElement.textContent = 'Không tìm thấy địa điểm';
-      }
-    })
-    .catch(error => {
-      console.log('Đã xảy ra lỗi:', error);
-      resultElement.textContent = 'Đã xảy ra lỗi';
-    });
-}
+    if (city === '') {
+        return;
+    }
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`).then(response => response.json().then(
+        json => {
+            if (json.cod === '404') {
+                result.textContent = 'Không tìm thấy địa điểm';
+                image.src = '';
+                tempurature.innerHTML = '';
+            } else {
+                const image = document.querySelector('.image_weather');
+                const tempurature = document.querySelector('.tem_number');
+                const result = document.querySelector('#result');
+                switch (json.weather[0].main) {
+                    case 'Sun':
+                        image.src = 'image/sun.png';
+                        break;
+                    case 'Clear':
+                        image.src = 'image/sun.png';
+                        break;
+                    case 'Rain':
+                        image.src = 'image/rain.png';
+                        break;
+                    case 'Clouds':
+                        image.src = 'image/cloud.png';
+                        break;
+                    case 'Snow':
+                        image.src = 'image/snow.png';
+                        break;
+                    default:
+                        image.src = '';
+                }
+
+                tempurature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
+                result.textContent = city;
+            }
+        }
+    ));
+});
