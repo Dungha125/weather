@@ -43,6 +43,7 @@ body
     border-right: solid 1.5px white;
     display: flex;
     justify-content: space-around;
+    margin-bottom: 100px;
 }
 
 .weather_today .place
