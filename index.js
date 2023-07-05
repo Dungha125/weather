@@ -14,16 +14,18 @@ search.addEventListener('click', () => {
                 result.textContent = 'Không tìm thấy địa điểm';
                 image.src = '';
                 tempurature.innerHTML = '';
+                tempfeel.innerHTML = '';
             } else {
                 const image = document.querySelector('.image_weather');
                 const tempurature = document.querySelector('.tem_number');
                 const result = document.querySelector('#result');
+                const tempfeel = document.querySelector('.tem_feel');
                 switch (json.weather[0].main) {
                     case 'Sun':
                         image.src = 'image/sun.png';
                         break;
                     case 'Clear':
-                        image.src = 'image/sun.png';
+                        image.src = 'image/clear.png';
                         break;
                     case 'Rain':
                         image.src = 'image/rain.png';
@@ -37,7 +39,8 @@ search.addEventListener('click', () => {
                     default:
                         image.src = '';
                 }
-
+                
+                tempfeel.innerHTML = `<span>Nhiệt độ cảm nhận: </span>${parseInt(json.main.feels_like)}<span>°C</span>`;
                 tempurature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
                 result.textContent = city;
             }
