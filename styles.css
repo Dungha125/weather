@@ -296,5 +296,12 @@ body
         margin: 0;
         line-height: 40px;
     }
-
+    
+    .weather_today .place .tempurature .details
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 }
