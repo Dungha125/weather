@@ -100,13 +100,14 @@ body
     color: #ffffff;
     background-image: linear-gradient(315deg, #395286 0%, #00255c 74%);
   }
-
 /*nhiet do*/
 .weather_today .place .tempurature
 {
     display: flex;
     justify-content: start;
     align-items: center;
+    grid-row:auto;
+    gap: 20px;
 }
 
 .weather_today .place .tempurature span img
@@ -121,14 +122,40 @@ body
     font-weight: 600;
 }
 
-.weather_today .place .tempurature .tem_feel
+.weather_today .place .tempurature details
+{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.weather_today .place .tempurature .tem_feel,.weather_today .place .tempurature .tem_max,
+.weather_today .place .tempurature .tem_min
 {
     font-size: 20px;
     font-family: sans-serif;
-    color:#4b4a4a;
+    color:#252525;
     font-weight: 600;
     margin-bottom: 10px;
 }
+
+/*.weather_today .place .tempurature  h2
+{
+    width: max-content;
+    margin: 0 10px 10px 10px;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: sans-serif;
+    color:#0e0c0c;
+    font-weight: 600;
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+
+}*/
+
 
 /*weather week*/
 .weather_week .dayofweek
