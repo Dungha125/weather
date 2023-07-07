@@ -50,11 +50,11 @@ search.addEventListener('click', () => {
                     tempurature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
                     tempurature.style.color = 'rgb(248, 21, 21)';
                 }
-                else if (parseInt(json.main.temp) >= 30 || parseInt(json.main.temp) < 40) {
+                else if (parseInt(json.main.temp) >= 30 && parseInt(json.main.temp) < 40) {
                     tempurature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
                     tempurature.style.color = 'rgb(248, 104, 21)';
                   } 
-                else if(20 <= parseInt(json.main.temp) || parseInt(json.main.temp) < 30)
+                else if(20 <= parseInt(json.main.temp) && parseInt(json.main.temp) < 30)
                 {
                     tempurature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
                     tempurature.style.color = 'rgb(35, 104, 188)';
