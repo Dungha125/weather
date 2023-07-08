@@ -8,10 +8,15 @@ body
 {
     display: flex;
     justify-content: center;
+}
+.back
+{
+    display: flex;
+    justify-content: center;
     width: 100%;
     min-height: 100vh;
     height: max-content;
-    background: linear-gradient(180deg, rgb(59, 157, 255) 0%, rgba(226,240,255,1) 100%);
+    background-image: linear-gradient(180deg, rgb(59, 157, 255) 0%, rgba(226,240,255,1) 100%);
 }
 .main
 {
@@ -103,7 +108,7 @@ body
 
 .weather_today .place .search .time
 {
-    margin-left: 10px;
+    margin-left: 20px;
     font-size: 20px;
     font-family: sans-serif;
     color: #00255c;
@@ -119,10 +124,11 @@ body
 .weather_today .place .tempurature
 {
     display: flex;
-    justify-content: start;
+    justify-content: space-around;
     align-items: center;
     grid-row:auto;
     gap: 20px;
+    margin: 0 10px;
 }
 
 .weather_today .place .tempurature span img
@@ -132,17 +138,19 @@ body
 }
 .weather_today .place .tempurature .tem_number
 {
-    font-size: 80px;
+    font-size: 100px;
     font-family: sans-serif;
     font-weight: 600;
 }
 
-.weather_today .place .tempurature details
+
+.weather_today .place .tempurature .details
 {
     width: 90%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    flex-direction: row;
+    
 }
 
 .weather_today .place .tempurature .tem_feel,.weather_today .place .tempurature .tem_max,
@@ -170,6 +178,17 @@ body
     flex-wrap: wrap;
 
 }*/
+
+.weather_today .place .tempurature .image_place
+{
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px rgb(175, 175, 175);
+    display: none;
+}
 
 
 /*weather week*/
@@ -242,7 +261,6 @@ body
     }
     .weather_today .place .search .time
     {
-        margin-top: 5px;
         margin-left: 0px;
     }
 
@@ -250,7 +268,9 @@ body
     {
         display: flex;
         flex-direction: column;
+        gap: 0;
     }
+
 
     .weather_today .place .tempurature .tem_number
     {
@@ -323,11 +343,10 @@ body
         line-height: 40px;
     }
     
-    .weather_today .place .tempurature .details
+    .weather_today .place .tempurature .details .temmm
     {
         display: flex;
         flex-direction: column;
-        align-items: center;
         margin-bottom: 20px;
     }
 }

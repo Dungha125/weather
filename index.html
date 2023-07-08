@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="image/">
 </head>
 <body>
-    <div class="main">
+    <div class="back">
+        <div class="main">
         <div class="weather_today">
             <div class="place">
                 <div class="search">
@@ -23,13 +24,17 @@
                     <span><img class="image_weather" src="image/place.png" alt=""></span>
                     <span ><h1 class="tem_number"></h1></span>
                     <div class="details">
-                        <span><h2 class="tem_feel"></h2></span>
-                        <span>
+                        <div class="temmm">
+                            <span><h2 class="tem_feel"></h2></span>
+                            <span>
                             <h2 class="tem_max"></h2>
-                        </span>
-                        <span>
+                            </span>
+                            <span>
                             <h2 class="tem_min"></h2>
-                        </span>
+                            </span>
+                        </div>
+                        
+                        <span><img src="${imageUrl}" alt="" class="image_place"></span>
                     </div>
                     
                     
@@ -81,6 +86,8 @@
                 
         </div>
     </div>
+    </div>
+    
     <script src="index.js"></script>
 </body>
 </html>
