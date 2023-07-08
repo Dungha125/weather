@@ -28,6 +28,7 @@ search.addEventListener('click', () => {
                 tempFeel.innerHTML = '';
                 tempMax.innerHTML = '';
                 tempMin.innerHTML = '';
+
                 
             } else {
                 switch (json.weather[0].main) {
@@ -70,7 +71,6 @@ search.addEventListener('click', () => {
                 tempMin.innerHTML = `<span>Nhiệt độ thấp nhất: </span>${parseInt(json.main.temp_min)}<span>°C</span>`;
                 searchImages(query, APIplace);
                 displayImage(imageUrl);
-      
                 
             }
         });
@@ -92,10 +92,9 @@ search.addEventListener('click', () => {
       });
 }
 
-// Hiển thị hình ảnh trong một thẻ img có src
 // Hiển thị hình ảnh trong một thẻ <img> với thuộc tính src
 function displayImage(imageUrl) {
-  /*const imgElement = document.querySelector('.image_place');*/
+
   imgElement.src = imageUrl;
   imgElement.style.display = 'block';
 }

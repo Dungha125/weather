@@ -8,16 +8,11 @@ body
 {
     display: flex;
     justify-content: center;
-}
-.back
-{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    min-height: 100vh;
     height: max-content;
-    background-image: linear-gradient(180deg, rgb(59, 157, 255) 0%, rgba(226,240,255,1) 100%);
+    min-height: 100vh;
+    background: linear-gradient(180deg, rgb(59, 157, 255) 0%, rgba(226,240,255,1) 100%);
 }
+
 .main
 {
     width: 90%;
@@ -25,12 +20,13 @@ body
     margin-top: 50px;
     border-radius: 10px;
     margin-bottom: 60px;
+    position: relative;
 }
 .weather_today
 {
     width: 100%;
     height: max-content;
-    background-color: rgba(244, 244, 244, 0.422);
+    background-color: rgba(255, 255, 255, 0.737);
     border-radius: 10px 10px 0 0;
     border-top: solid 2.5px white;
     border-left: solid 1.5px white;
@@ -41,13 +37,14 @@ body
 {
     width: 100%;
     height: max-content;
-    background-color: rgba(244, 244, 244, 0.422);
+    background-color: rgba(255, 255, 255, 0.737);
     border-radius: 0 0 10px 10px;
     border-bottom: solid 2.5px white;
     border-left: solid 1.5px white;
     border-right: solid 1.5px white;
     display: flex;
     justify-content: space-around;
+    padding-bottom: 10px;
 }
 
 .weather_today .place
@@ -59,6 +56,7 @@ body
 .weather_today .place .infor_place
 {
     width: 100%;
+    margin-top: 10px;
 }
 .weather_today .place h1
 {
@@ -71,9 +69,18 @@ body
     position: relative;
     display: flex;
     align-items: center;
+    width: min-content;
     height:50px;
     margin-left: 20px;
 }
+
+.weather_today .place .search .search_area
+{
+    display: flex;
+    width: max-content;
+    gap: 0;
+}
+
 .weather_today .place .search input
 {
     height: 26px;
@@ -177,19 +184,39 @@ body
     display: flex;
     flex-wrap: wrap;
 
-}*/
-
-.weather_today .place .tempurature .image_place
-{
-    width: 200px;
-    height: 200px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 5px 5px rgb(175, 175, 175);
-    display: none;
 }
 
+body .bg
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+.bg .image_place
+{
+    width: 100%;
+    height: 100vh;
+    object-fit:cover;
+    display: none;
+}*/
+body .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .bg .image_place {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
 
 /*weather week*/
 .weather_week .dayofweek
@@ -250,7 +277,6 @@ body
 }
 
 
-
 @media (max-width: 768px)
 {
     .weather_today .place .search
@@ -259,9 +285,17 @@ body
         flex-wrap: wrap;
         margin-top: 10px;
     }
+    .weather_today .place .search .searchInput
+    {
+        border-radius: 5px 0 0 0;
+    }
     .weather_today .place .search .time
     {
         margin-left: 0px;
+        width: 174px;
+        border-radius: 0 0 10px 10px;
+        display: flex;
+        justify-content: center;
     }
 
     .weather_today .place .tempurature
@@ -343,10 +377,18 @@ body
         line-height: 40px;
     }
     
-    .weather_today .place .tempurature .details .temmm
+    .weather_today .place .tempurature .details
     {
         display: flex;
         flex-direction: column;
         margin-bottom: 20px;
     }
+
+    .weather_today .place .tempurature .details .temmm
+    {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
 }
