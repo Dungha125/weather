@@ -29,12 +29,6 @@ search.addEventListener('click', () => {
                 tempMin.innerHTML = '';
               } 
               else {
-                /*const image = document.querySelector('.image_weather');
-                const temperature = document.querySelector('.tem_number');
-                const result = document.querySelector('#result');
-                const tempFeel = document.querySelector('.tem_feel');
-                const tempMax = document.querySelector('.tem_max');
-                const tempMin = document.querySelector('.tem_min');*/
                 
                 switch (json.weather[0].main) {
                   case 'Sun':
@@ -83,3 +77,14 @@ search.addEventListener('click', () => {
     }
     );
 });
+
+function getCurrentTime() {
+  const date = new Date();
+  const currentTime = date.toLocaleTimeString(); // Lấy giờ hiện tại
+
+  const currentTimeElement = document.querySelector('.time');
+  currentTimeElement.textContent = 'Time: ' + currentTime;
+}
+
+// Cập nhật giờ mỗi giây
+setInterval(getCurrentTime, 1000);

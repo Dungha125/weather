@@ -100,6 +100,21 @@ body
     color: #ffffff;
     background-image: linear-gradient(315deg, #395286 0%, #00255c 74%);
   }
+
+.weather_today .place .search .time
+{
+    margin-left: 10px;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: #00255c;
+    font-weight: 600;
+    line-height: 26px;
+    align-content: center;
+    width: max-content;
+    padding: 0 5px;
+    background: linear-gradient(0deg, rgba(255,249,140,1) 0%, rgba(202,255,242,1) 100%);
+    border-radius: 10px;
+}
 /*nhiet do*/
 .weather_today .place .tempurature
 {
@@ -219,6 +234,17 @@ body
 
 @media (max-width: 768px)
 {
+    .weather_today .place .search
+    {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+    .weather_today .place .search .time
+    {
+        margin-top: 5px;
+        margin-left: 0px;
+    }
 
     .weather_today .place .tempurature
     {
