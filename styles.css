@@ -289,10 +289,16 @@ body .bg {
     {
         border-radius: 5px 0 0 0;
     }
+
+    .weather_today .place .search .btnsearch
+    {
+        border-radius: 0 5px 0 0;
+    }
+
     .weather_today .place .search .time
     {
         margin-left: 0px;
-        width: 174px;
+        width: 100%;
         border-radius: 0 0 10px 10px;
         display: flex;
         justify-content: center;
