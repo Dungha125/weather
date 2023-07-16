@@ -10,7 +10,7 @@ body
     justify-content: center;
     height: max-content;
     min-height: 100vh;
-    background: linear-gradient(180deg, rgb(59, 157, 255) 0%, rgba(226,240,255,1) 100%);
+    background: linear-gradient(180deg, rgb(122, 188, 255) 0%, rgb(243, 255, 197) 100%);
 }
 
 .main
@@ -27,7 +27,7 @@ body
     width: 100%;
     height: max-content;
     background-color: rgba(255, 255, 255, 0.737);
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px;
     border-top: solid 2.5px white;
     border-left: solid 1.5px white;
     border-right: solid 1.5px white;
@@ -42,10 +42,13 @@ body
     border-bottom: solid 2.5px white;
     border-left: solid 1.5px white;
     border-right: solid 1.5px white;
-    display: flex;
+    display: none;
     justify-content: space-around;
     padding-bottom: 10px;
 }
+
+
+
 
 .weather_today .place
 {
@@ -319,7 +322,6 @@ body .bg {
 
     .weather_week
     {
-        display: flex;
         flex-direction: column;
     }
 

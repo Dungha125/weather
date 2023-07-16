@@ -6,18 +6,22 @@ const tempFeel = document.querySelector('.tem_feel');
 const tempMax = document.querySelector('.tem_max');
 const tempMin = document.querySelector('.tem_min');
 const imgElement = document.querySelector('.image_place');
-const APIplace = 'uILXSVWL2QNWNFTIJQhISufyRB3BZ87Wkujhq3aV-3k'; // Thay 'YOUR_UNSPLASH_ACCESS_KEY' bằng khóa truy cập API Unsplash của bạn
+const APIplace = 'uILXSVWL2QNWNFTIJQhISufyRB3BZ87Wkujhq3aV-3k';
+const weatherWeekDiv = document.querySelector('.weather_week');
+const weatherTodayDiv = document.querySelector('.weather_today');
 
+ // Thay 'YOUR_UNSPLASH_ACCESS_KEY' bằng khóa truy cập API Unsplash của bạn
 search.addEventListener('click', () => {
     const APIKey = 'd3e085e20c39e18040fc69688298a017';
     const city = document.querySelector('.searchInput').value;
     const query = document.querySelector('.searchInput').value;
-
+    
     if (city === '') {
         return;
     }
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
+    //hiển thị nhiệt độ
+    const getTemday = fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
         .then(response => response.json())
         .then(json => {
             if (json.cod === '404') {
@@ -28,9 +32,11 @@ search.addEventListener('click', () => {
                 tempFeel.innerHTML = '';
                 tempMax.innerHTML = '';
                 tempMin.innerHTML = '';
-
-                
+                weatherWeekDiv.style.display = 'none';
+                weatherTodayDiv.style.borderRadius = '10px';
             } else {
+                weatherWeekDiv.style.display = 'flex';
+                weatherTodayDiv.style.borderRadius = '10px 10px 0 0';
                 switch (json.weather[0].main) {
                     case 'Sun':
                         image.src = 'image/sun.png';
@@ -71,12 +77,11 @@ search.addEventListener('click', () => {
                 tempMin.innerHTML = `<span>Nhiệt độ thấp nhất: </span>${parseInt(json.main.temp_min)}<span>°C</span>`;
                 searchImages(query, APIplace);
                 displayImage(imageUrl);
-                
             }
         });
-        function searchImages(query, APIplace) {
+function searchImages(query, APIplace) {
   const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=${APIplace}`;
-
+    //tìm ảnh 
   fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -98,10 +103,7 @@ function displayImage(imageUrl) {
   imgElement.src = imageUrl;
   imgElement.style.display = 'block';
 }
-
 });
-
-
 
 function getCurrentTime() {
     const date = new Date();
