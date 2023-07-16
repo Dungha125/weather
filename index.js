@@ -103,6 +103,11 @@ function displayImage(imageUrl) {
   imgElement.src = imageUrl;
   imgElement.style.display = 'block';
 }
+
+//cap nhap theo gio
+
+
+
 });
 
 function getCurrentTime() {
