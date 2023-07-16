@@ -10,7 +10,6 @@ body
     justify-content: center;
     height: max-content;
     min-height: 100vh;
-    background: linear-gradient(180deg, #00EEFF 0%, #00CFFF 100%);
     background-image: url("/image/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
