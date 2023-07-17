@@ -6,6 +6,7 @@
     <title>Weather</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="image/">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body> 
     <span class = "bg"><img src="${imageUrl}" alt="" class="image_place"></span>
@@ -45,48 +46,12 @@
             </div>
         </div>
         <div class="weather_week" id="tuna">
-            <div class="dayofweek">
-                <img src="image/rain.png" alt="" class="MON">
-                <div class="line"></div>
-                <span class="day"><h1>Monday</h1><h2 id="am">28</h2><h2 id="pm">24</h2></span>
-            </div>
-                
-            <div class="dayofweek">
-                <img src="image/sun.png" alt="" class="TUE">
-                <div class="line"></div>
-                <span class="day"><h1>Tuesday</h1><h2 id="am">31</h2><h2 id="pm">24</h2></span>
-            </div>
-                
-            <div class="dayofweek">
-                <img src="image/rain.png" alt="" class="WES">
-                <div class="line"></div> 
-                <span class="day"><h1>Wednesday</h1><h2 id="am">27</h2><h2 id="pm">24</h2></span>
-            </div>
+            
+        <h1>Biểu đồ nhiệt độ của thành phố</h1>
+        <div class="chart-container" style="position: relative; height:400px; width:80vw;">
+         <canvas id="temperatureChart"></canvas>
+        </div>
                
-            <div class="dayofweek">
-                <img src="image/sun.png" alt="" class="THU">
-                <div class="line"></div>
-                <span class="day"><h1>Thursday</h1><h2 id="am">34</h2><h2 id="pm">31</h2></span>
-            </div>
-                
-            <div class="dayofweek">
-                <img src="image/sun.png" alt="" class="FRI">
-                <div class="line"></div>
-                <span class="day"><h1>Friday</h1><h2 id="am">32</h2><h2 id="pm">31</h2></span>
-            </div>
-                
-            <div class="dayofweek">
-                <img src="image/sun.png" alt="" class="SAT">
-                <div class="line"></div>
-                <span class="day"><h1>Saturday</h1><h2 id="am">32</h2><h2 id="pm">29</h2></span>
-            </div>
-                
-            <div class="dayofweek">
-                <img src="image/rain.png" alt="" class="SUN">
-                <div class="line"></div>
-                <span class="day"><h1>Sunday</h1><h2 id="am">28</h2><h2 id="pm">25</h2></span>
-            </div>
-                
         </div>
     </div>
     

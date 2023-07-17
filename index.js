@@ -19,11 +19,11 @@ search.addEventListener('click', () => {
     if (city === '') {
         return;
     }
-
     //hiển thị nhiệt độ
     const getTemday = fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
         .then(response => response.json())
         .then(json => {
+            
             if (json.cod === '404') {
                 imgElement.style.display = 'none';
                 result.textContent = 'Không tìm thấy địa điểm';
@@ -34,6 +34,7 @@ search.addEventListener('click', () => {
                 tempMin.innerHTML = '';
                 weatherWeekDiv.style.display = 'none';
                 weatherTodayDiv.style.borderRadius = '10px';
+               
             } else {
                 weatherWeekDiv.style.display = 'flex';
                 weatherTodayDiv.style.borderRadius = '10px 10px 0 0';
@@ -76,26 +77,28 @@ search.addEventListener('click', () => {
                 tempMax.innerHTML = `<span>Nhiệt độ cao nhất: </span>${parseInt(json.main.temp_max)}<span>°C</span>`;
                 tempMin.innerHTML = `<span>Nhiệt độ thấp nhất: </span>${parseInt(json.main.temp_min)}<span>°C</span>`;
                 searchImages(query, APIplace);
-                displayImage(imageUrl);
+                displayImage(imageUrl); 
+                chartweather(city,APIKey);
             }
         });
-function searchImages(query, APIplace) {
-  const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=${APIplace}`;
-    //tìm ảnh 
-  fetch(url)
-      .then(response => response.json())
-      .then(data => {
-          if (data.results.length > 0) {
-              const imageUrl = data.results[0].urls.regular;
-              displayImage(imageUrl);
-          } else {
-              console.log('Không tìm thấy hình ảnh cho địa điểm này.');
-          }
-      })
-      .catch(error => {
-          console.log('Đã xảy ra lỗi:', error);
-      });
-}
+        let imageUrl;
+        function searchImages(query, APIplace) {
+            const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=${APIplace}`;
+        
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results.length > 0) {
+                        imageUrl = data.results[0].urls.regular; // Thay đổi tên biến imageUrl thành imageUrlResult
+                        displayImage(imageUrl); 
+                    } else {
+                        console.log('Không tìm thấy hình ảnh cho địa điểm này.');
+                    }
+                })
+                .catch(error => {
+                    console.log('Đã xảy ra lỗi:', error);
+                });
+        }
 
 // Hiển thị hình ảnh trong một thẻ <img> với thuộc tính src
 function displayImage(imageUrl) {
@@ -103,12 +106,52 @@ function displayImage(imageUrl) {
   imgElement.src = imageUrl;
   imgElement.style.display = 'block';
 }
+function chartweather(city,APIKey){
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`)
+            .then(response => response.json())
+            .then(data => {
+                // Gọi hàm tạo biểu đồ với dữ liệu từ API
+                createChart(data);
+            })
+            .catch(error => {
+                console.error('Lỗi khi gọi API:', error);
+            });
 
-//cap nhap theo gio
+        // Hàm để tạo biểu đồ
+        function createChart(data) {
+            const ctx = document.getElementById('temperatureChart').getContext('2d');
+            const labels = data.list.map(item => item.dt_txt);
+            const temps = data.list.map(item => item.main.temp);
+            Chart.helpers.each(Chart.instances, function (instance) {
+              instance.destroy();
+            });
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Nhiệt độ (°C)',
+                        data: temps,
+                        backgroundColor: 'rgba(68, 145, 234, 0.525)',
+                        borderColor: 'rgba(68, 145, 234, 1)',
+                        borderWidth: 1.2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+}
 
 
 
 });
+
 
 function getCurrentTime() {
     const date = new Date();
@@ -120,3 +163,4 @@ function getCurrentTime() {
 
 // Cập nhật giờ mỗi giây
 setInterval(getCurrentTime, 1000);
+

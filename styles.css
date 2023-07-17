@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     transition: all 0.4s ease;
+    scroll-behavior: smooth;
 }
 body
 {
@@ -13,6 +14,7 @@ body
     background-image: url("image/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 
 .main
@@ -46,7 +48,8 @@ body
     border-left: solid 1.5px white;
     border-right: solid 1.5px white;
     display: none;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
     padding-bottom: 10px;
 }
 
@@ -230,61 +233,28 @@ body .bg {
   }
 
 /*weather week*/
-.weather_week .dayofweek
+.weather_week #tuna
 {
-    width: 20vh;
+    display: inline;
+}
+.weather_week h1
+{
+    font-family: sans-serif;
+    font-size: 26px;
     height: max-content;
-    background-color: #f0fafffe;
-    border-radius: 15px;
-    box-shadow:0 2px 2px #6a85c1;
-    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color:#00255c;
+}
+.weather_week .chart-container
+{
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-}
-.weather_week .dayofweek img
-{
-    width: 100px;
-    height: 100px;
-}
-.weather_week .dayofweek .line
-{
-    width: 90%;
-    border-bottom: solid 2px #395186ae;
-    margin-bottom: 5px;
-}
-.weather_week .dayofweek .day
-{
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-}
-.weather_week .dayofweek .day h1
-{
-    font-size: 1rem;
-    font-family: sans-serif;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.weather_week .dayofweek .day h2
-{
-    font-size: 5rem;
-    font-family: sans-serif;
-    color: #a70e00;
-    text-align: center;
-    margin: 20px 0 0 0;
-}
-.weather_week .dayofweek .day #pm
-{
-    font-size: 2rem;
-    font-family: sans-serif;
-    color: #2056ac;
-    text-align:center;
-    height: max-content;
-    margin-top: 0;
     margin-bottom: 10px;
+}
+.weather_week .chart-container #temperatureChart
+{
+    width: 100%;
 }
 
 
