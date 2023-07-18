@@ -88,17 +88,18 @@ body
     display: flex;
     width: max-content;
     gap: 0;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 2px 3px #00255c;
 }
 
-.weather_today .place .search input
+.weather_today .place .search .searchInput
 {
     height: 26px;
     border-radius:5px 0 0 5px;
     border: none;
     padding-left: 5px;
-    background-color: #dbf5fb;
+    background-color: rgb(228, 253, 252);
+    border: inset 2px #1f69d8;
 }
 
 
@@ -184,36 +185,6 @@ body
     margin-bottom: 10px;
 }
 
-/*.weather_today .place .tempurature  h2
-{
-    width: max-content;
-    margin: 0 10px 10px 10px;
-    padding: 10px 0;
-    border-radius: 5px;
-    font-size: 16px;
-    font-family: sans-serif;
-    color:#0e0c0c;
-    font-weight: 600;
-    justify-content: space-around;
-    display: flex;
-    flex-wrap: wrap;
-
-}
-
-body .bg
-{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-}
-.bg .image_place
-{
-    width: 100%;
-    height: 100vh;
-    object-fit:cover;
-    display: none;
-}*/
 body .bg {
     position: absolute;
     top: 0;
@@ -269,14 +240,13 @@ body .bg {
         display: flex;
         width: 100%;
         flex-wrap: wrap;
-        margin-top: 10px;
         margin-left: 0;
     }
     .weather_today .place .search .searchInput
     {
         width: 70%;
-        background-color: #dbf5fb;
-        border-radius: 5px 0 0 0;
+        background-color: rgb(228, 253, 252);
+        border-radius: 10px 0 0 0;
     }
     .weather_today .place .search .search_area
     {
@@ -286,7 +256,7 @@ body .bg {
     .weather_today .place .search .btnsearch
     {
         width: 30%;
-        border-radius: 0 5px 0 0;
+        border-radius: 0 10px 0 0;
     }
 
     .weather_today .place .search .time

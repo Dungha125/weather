@@ -125,7 +125,7 @@ function createOrUpdateChart(data) {
     .map(time => time.split(' ')[1]); // Chỉ lấy phần giờ (HH:mm) của thời gian
 
   const temps = data.list.map(item => item.main.temp);
-  const maxColumns = 7; // Số cột tối đa là 7
+  const maxColumns = 6; // Số cột tối đa là 7
 
   // Giới hạn số cột và giá trị của trục x
   const limitedLabels = labels.slice(0, maxColumns);
