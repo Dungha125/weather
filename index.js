@@ -9,7 +9,7 @@ const imgElement = document.querySelector('.image_place');
 const APIplace = 'uILXSVWL2QNWNFTIJQhISufyRB3BZ87Wkujhq3aV-3k';
 const weatherWeekDiv = document.querySelector('.weather_week');
 const weatherTodayDiv = document.querySelector('.weather_today');
-
+let myChart;
  // Thay 'YOUR_UNSPLASH_ACCESS_KEY' bằng khóa truy cập API Unsplash của bạn
 search.addEventListener('click', () => {
     const APIKey = 'd3e085e20c39e18040fc69688298a017';
@@ -106,46 +106,60 @@ function displayImage(imageUrl) {
   imgElement.src = imageUrl;
   imgElement.style.display = 'block';
 }
-function chartweather(city,APIKey){
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`)
-            .then(response => response.json())
-            .then(data => {
-                // Gọi hàm tạo biểu đồ với dữ liệu từ API
-                createChart(data);
-            })
-            .catch(error => {
-                console.error('Lỗi khi gọi API:', error);
-            });
 
-        // Hàm để tạo biểu đồ
-        function createChart(data) {
-            const ctx = document.getElementById('temperatureChart').getContext('2d');
-            const labels = data.list.map(item => item.dt_txt);
-            const temps = data.list.map(item => item.main.temp);
-            Chart.helpers.each(Chart.instances, function (instance) {
-              instance.destroy();
-            });
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Nhiệt độ (°C)',
-                        data: temps,
-                        backgroundColor: 'rgba(68, 145, 234, 0.525)',
-                        borderColor: 'rgba(68, 145, 234, 1)',
-                        borderWidth: 1.2
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+function chartweather(city, APIKey) {
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`)
+    .then(response => response.json())
+    .then(data => {
+      // Gọi hàm tạo biểu đồ với dữ liệu từ API
+      createOrUpdateChart(data);
+    })
+    .catch(error => {
+      console.error('Lỗi khi gọi API:', error);
+    });
+}
+
+// Hàm để tạo biểu đồ
+function createOrUpdateChart(data) {
+  const labels = data.list.map(item => item.dt_txt) // Lấy thời gian từ API
+    .map(time => time.split(' ')[1]); // Chỉ lấy phần giờ (HH:mm) của thời gian
+
+  const temps = data.list.map(item => item.main.temp);
+  const maxColumns = 7; // Số cột tối đa là 7
+
+  // Giới hạn số cột và giá trị của trục x
+  const limitedLabels = labels.slice(0, maxColumns);
+  const limitedTemps = temps.slice(0, maxColumns);
+
+  if (!myChart) {
+    // Nếu biểu đồ chưa tồn tại, tạo mới biểu đồ
+    const ctx = document.getElementById('temperatureChart').getContext('2d');
+    myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: limitedLabels,
+        datasets: [{
+          label: 'Nhiệt độ (°C)',
+          data: limitedTemps,
+          backgroundColor: 'rgba(68, 145, 234, 0.525)',
+          borderColor: 'rgba(68, 145, 234, 1)',
+          borderWidth: 1.2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
+      }
+    });
+  } else {
+    // Nếu biểu đồ đã tồn tại, cập nhật dữ liệu và cấu hình
+    myChart.data.labels = limitedLabels;
+    myChart.data.datasets[0].data = limitedTemps;
+    myChart.update();
+  }
 }
 
 

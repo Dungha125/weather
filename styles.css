@@ -5,6 +5,7 @@
     transition: all 0.4s ease;
     scroll-behavior: smooth;
 }
+
 body
 {
     display: flex;
@@ -14,7 +15,6 @@ body
     background-image: url("image/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
-    
 }
 
 .main
@@ -180,7 +180,7 @@ body
     font-size: 20px;
     font-family: sans-serif;
     color:#252525;
-    font-weight: 600;
+    font-weight: 550;
     margin-bottom: 10px;
 }
 
@@ -220,6 +220,7 @@ body .bg {
     left: 0;
     width: 100%;
     height: 100vh;
+    
   }
   
   .bg .image_place {
@@ -230,6 +231,7 @@ body .bg {
     height: 100%;
     object-fit: cover;
     display: none;
+    filter: blur(3px);
   }
 
 /*weather week*/
@@ -250,9 +252,11 @@ body .bg {
 {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    margin: 10px;
+    width: 100%;
+
 }
-.weather_week .chart-container #temperatureChart
+.weather_week #temperatureChart
 {
     width: 100%;
 }
@@ -321,5 +325,4 @@ body .bg {
         flex-direction: column;
         text-align: center;
     }
-
 }
