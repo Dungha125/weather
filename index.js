@@ -9,17 +9,17 @@ const imgElement = document.querySelector('.image_place');
 const APIplace = 'uILXSVWL2QNWNFTIJQhISufyRB3BZ87Wkujhq3aV-3k';
 const weatherWeekDiv = document.querySelector('.weather_week');
 const weatherTodayDiv = document.querySelector('.weather_today');
+const infor = document.querySelector('.info');
 let myChart;
  // Thay 'YOUR_UNSPLASH_ACCESS_KEY' bằng khóa truy cập API Unsplash của bạn
 search.addEventListener('click', () => {
     const APIKey = 'd3e085e20c39e18040fc69688298a017';
     const city = document.querySelector('.searchInput').value;
     const query = document.querySelector('.searchInput').value;
-    
     if (city === '') {
         return;
     }
-    //hiển thị nhiệt độ
+//hiển thị nhiệt độ
     const getTemday = fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
         .then(response => response.json())
         .then(json => {
@@ -33,11 +33,19 @@ search.addEventListener('click', () => {
                 tempMax.innerHTML = '';
                 tempMin.innerHTML = '';
                 weatherWeekDiv.style.display = 'none';
-                weatherTodayDiv.style.borderRadius = '10px';
-               
+              infor.style.display = 'none';
+                weatherTodayDiv.style.borderRadius = '10px';            
             } else {
+      
                 weatherWeekDiv.style.display = 'flex';
-                weatherTodayDiv.style.borderRadius = '10px 10px 0 0';
+                infor.style.display = 'flex';
+                weatherTodayDiv.style.borderRadius = '10px';
+                weatherTodayDiv.style.width = '30%';
+                if(window.innerWidth < 768)
+                {
+                  weatherTodayDiv.style.width = '100%';
+                  weatherWeekDiv.style.width = '100%';
+                }
                 switch (json.weather[0].main) {
                     case 'Sun':
                         image.src = 'image/sun.png';
@@ -71,11 +79,10 @@ search.addEventListener('click', () => {
                     temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
                     temperature.style.color = 'rgb(106, 162, 198)';
                 }
-
-                tempFeel.innerHTML = `<span>Nhiệt độ cảm nhận: </span>${parseInt(json.main.feels_like)}<span>°C</span>`;
+                tempFeel.innerHTML = `<span>Nhiệt độ cảm nhận </span>${parseInt(json.main.feels_like)}<span>°C</span>`;
                 result.textContent = city;
-                tempMax.innerHTML = `<span>Nhiệt độ cao nhất: </span>${parseInt(json.main.temp_max)}<span>°C</span>`;
-                tempMin.innerHTML = `<span>Nhiệt độ thấp nhất: </span>${parseInt(json.main.temp_min)}<span>°C</span>`;
+                tempMax.innerHTML = `<span>Nhiệt độ cao nhất </span>${parseInt(json.main.temp_max)}<span>°C</span>`;
+                tempMin.innerHTML = `<span>Nhiệt độ thấp nhất </span>${parseInt(json.main.temp_min)}<span>°C</span>`;
                 searchImages(query, APIplace);
                 displayImage(imageUrl); 
                 chartweather(city,APIKey);
@@ -99,14 +106,12 @@ search.addEventListener('click', () => {
                     console.log('Đã xảy ra lỗi:', error);
                 });
         }
-
 // Hiển thị hình ảnh trong một thẻ <img> với thuộc tính src
 function displayImage(imageUrl) {
 
   imgElement.src = imageUrl;
   imgElement.style.display = 'block';
 }
-
 function chartweather(city, APIKey) {
   fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`)
     .then(response => response.json())
@@ -118,14 +123,13 @@ function chartweather(city, APIKey) {
       console.error('Lỗi khi gọi API:', error);
     });
 }
-
 // Hàm để tạo biểu đồ
 function createOrUpdateChart(data) {
-  const labels = data.list.map(item => item.dt_txt) // Lấy thời gian từ API
-    .map(time => time.split(' ')[1]); // Chỉ lấy phần giờ (HH:mm) của thời gian
+  const labels = data.list.map(item => item.dt_txt) 
+    .map(time => time.split(' ')[1]); 
 
   const temps = data.list.map(item => item.main.temp);
-  const maxColumns = 6; // Số cột tối đa là 7
+  const maxColumns = 7; 
 
   // Giới hạn số cột và giá trị của trục x
   const limitedLabels = labels.slice(0, maxColumns);
@@ -151,30 +155,28 @@ function createOrUpdateChart(data) {
           y: {
             beginAtZero: true
           }
+        },
+        maintainAspectRatio: false, 
+        responsive: true, 
+        plugins: {
+            legend: {
+                position: 'top'
+            }
         }
       }
     });
   } else {
-    // Nếu biểu đồ đã tồn tại, cập nhật dữ liệu và cấu hình
     myChart.data.labels = limitedLabels;
     myChart.data.datasets[0].data = limitedTemps;
     myChart.update();
   }
 }
-
-
-
 });
-
-
 function getCurrentTime() {
     const date = new Date();
-    const currentTime = date.toLocaleTimeString(); // Lấy giờ hiện tại
-
+    const currentTime = date.toLocaleTimeString();
     const currentTimeElement = document.querySelector('.time');
     currentTimeElement.textContent = 'Time: ' + currentTime;
 }
-
-// Cập nhật giờ mỗi giây
 setInterval(getCurrentTime, 1000);
 
